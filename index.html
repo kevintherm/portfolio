@@ -42,10 +42,62 @@
       src="https://unpkg.com/alpinejs@latest/dist/cdn.min.js"
     ></script>
     <script type="module" src="/main.js" defer></script>
+    <style>
+      #loader {
+        position: fixed;
+        inset: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #1f2937;
+        z-index: 2000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 100;
+        transition: all 500ms;
+      }
+
+      .loader {
+        width: 45px;
+        height: 40px;
+        background: linear-gradient(
+            #0000 calc(1 * 100% / 6),
+            #fff 0 calc(3 * 100% / 6),
+            #0000 0
+          ),
+          linear-gradient(
+            #0000 calc(2 * 100% / 6),
+            #fff 0 calc(4 * 100% / 6),
+            #0000 0
+          ),
+          linear-gradient(
+            #0000 calc(3 * 100% / 6),
+            #fff 0 calc(5 * 100% / 6),
+            #0000 0
+          );
+        background-size: 10px 400%;
+        background-repeat: no-repeat;
+        animation: matrix 1s infinite linear;
+      }
+
+      @keyframes matrix {
+        0% {
+          background-position: 0% 100%, 50% 100%, 100% 100%;
+        }
+
+        100% {
+          background-position: 0% 0%, 50% 0%, 100% 0%;
+        }
+      }
+    </style>
   </head>
   <body
     class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-all duration-500 sm:transition-none mx-4 md:mx-0"
   >
+    <div id="loader">
+      <div class="loader"></div>
+    </div>
+
     <!-- Navbar -->
     <div class="my-2"></div>
     <nav
@@ -175,7 +227,7 @@
       </section>
 
       <!-- Skills Section -->
-      <section id="skills" class="my-16" x-data="skills">
+      <section id="skills" class="my-16">
         <div class="mb-6">
           <h1 class="text-2xl font-bold leading-tight">Skills</h1>
           <p class="text-sm leading-tight">
@@ -185,22 +237,159 @@
         </div>
 
         <div class="flex flex-wrap gap-3 mb-6 sm:justify-start justify-center">
-          <template x-for="skill in skills">
-            <div
-              class="border border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:cursor-pointer rounded-xl flex items-center justify-between p-2 hover:-translate-y-2 transition duration-500 group"
-              :title="skill.name"
+          <!-- PHP: Hypertext Preprocessor -->
+          <div
+            class="border border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:cursor-pointer rounded-xl flex items-center justify-between p-2 hover:-translate-y-2 transition duration-500 group"
+            title="PHP: Hypertext Preprocessor"
+          >
+            <a href="//php.net" target="_blank">
+              <img
+                loading="lazy"
+                src="assets/new-php-logo.svg"
+                alt="PHP: Hypertext Preprocessor"
+                class="object-contain hover:saturate-200 rounded-md w-14 aspect-square sm:w-20 sm:grayscale group-hover:grayscale-0 transition duration-500"
+              />
+            </a>
+          </div>
+
+          <!-- Javascript -->
+          <div
+            class="border border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:cursor-pointer rounded-xl flex items-center justify-between p-2 hover:-translate-y-2 transition duration-500 group"
+            title="Javascript"
+          >
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+              target="_blank"
             >
-              <a :href="skill.url" target="_blank">
-                <img
-                  :src="skill.logo"
-                  x-data
-                  :alt="skill.name"
-                  class="object-contain hover:saturate-200 rounded-md w-14 aspect-square sm:w-20 sm:grayscale group-hover:grayscale-0 transition duration-500"
-                  :class="{'scale-150': skill.scale}"
-                />
-              </a>
-            </div>
-          </template>
+              <img
+                loading="lazy"
+                src="assets/js-logo.svg"
+                alt="Javascript"
+                class="object-contain hover:saturate-200 rounded-md w-14 aspect-square sm:w-20 sm:grayscale group-hover:grayscale-0 transition duration-500"
+              />
+            </a>
+          </div>
+
+          <!-- Python -->
+          <div
+            class="border border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:cursor-pointer rounded-xl flex items-center justify-between p-2 hover:-translate-y-2 transition duration-500 group"
+            title="Python"
+          >
+            <a href="//python.org" target="_blank">
+              <img
+                loading="lazy"
+                src="assets/python-logo.svg"
+                alt="Python"
+                class="object-contain hover:saturate-200 rounded-md w-14 aspect-square sm:w-20 sm:grayscale group-hover:grayscale-0 transition duration-500"
+                style="transform: scale(1.2)"
+              />
+            </a>
+          </div>
+
+          <!-- Laravel Framework -->
+          <div
+            class="border border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:cursor-pointer rounded-xl flex items-center justify-between p-2 hover:-translate-y-2 transition duration-500 group"
+            title="Laravel Framework"
+          >
+            <a href="//laravel.com" target="_blank">
+              <img
+                loading="lazy"
+                src="assets/laravel-logo.svg"
+                alt="Laravel Framework"
+                class="object-contain hover:saturate-200 rounded-md w-14 aspect-square sm:w-20 sm:grayscale group-hover:grayscale-0 transition duration-500"
+              />
+            </a>
+          </div>
+
+          <!-- CodeIgniter Framework -->
+          <div
+            class="border border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:cursor-pointer rounded-xl flex items-center justify-between p-2 hover:-translate-y-2 transition duration-500 group"
+            title="CodeIgniter Framework"
+          >
+            <a href="//codeigniter.com" target="_blank">
+              <img
+                loading="lazy"
+                src="assets/ci-logo.png"
+                alt="CodeIgniter Framework"
+                class="object-contain hover:saturate-200 rounded-md w-14 aspect-square sm:w-20 sm:grayscale group-hover:grayscale-0 transition duration-500"
+              />
+            </a>
+          </div>
+
+          <!-- React Library -->
+          <div
+            class="border border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:cursor-pointer rounded-xl flex items-center justify-between p-2 hover:-translate-y-2 transition duration-500 group"
+            title="React Library"
+          >
+            <a href="//react.dev" target="_blank">
+              <img
+                loading="lazy"
+                src="assets/react.svg"
+                alt="React Library"
+                class="object-contain hover:saturate-200 rounded-md w-14 aspect-square sm:w-20 sm:grayscale group-hover:grayscale-0 transition duration-500"
+              />
+            </a>
+          </div>
+
+          <!-- AlpineJS -->
+          <div
+            class="border border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:cursor-pointer rounded-xl flex items-center justify-between p-2 hover:-translate-y-2 transition duration-500 group"
+            title="AlpineJS"
+          >
+            <a href="//alpinejs.dev" target="_blank">
+              <img
+                loading="lazy"
+                src="assets/alpinejs-2.svg"
+                alt="AlpineJS"
+                class="object-contain hover:saturate-200 rounded-md w-14 aspect-square sm:w-20 sm:grayscale group-hover:grayscale-0 transition duration-500"
+              />
+            </a>
+          </div>
+
+          <!-- Livewire -->
+          <div
+            class="border border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:cursor-pointer rounded-xl flex items-center justify-between p-2 hover:-translate-y-2 transition duration-500 group"
+            title="Livewire"
+          >
+            <a href="//livewire.laravel.com" target="_blank">
+              <img
+                loading="lazy"
+                src="assets/laravel-livewire.webp"
+                alt="Livewire"
+                class="object-contain hover:saturate-200 rounded-md w-14 aspect-square sm:w-20 sm:grayscale group-hover:grayscale-0 transition duration-500"
+              />
+            </a>
+          </div>
+
+          <!-- TailwindCSS -->
+          <div
+            class="border border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:cursor-pointer rounded-xl flex items-center justify-between p-2 hover:-translate-y-2 transition duration-500 group"
+            title="TailwindCSS"
+          >
+            <a href="//tailwindcss.com" target="_blank">
+              <img
+                loading="lazy"
+                src="assets/tailwind-logo.svg"
+                alt="TailwindCSS"
+                class="object-contain hover:saturate-200 rounded-md w-14 aspect-square sm:w-20 sm:grayscale group-hover:grayscale-0 transition duration-500"
+              />
+            </a>
+          </div>
+
+          <!-- BootstrapCSS -->
+          <div
+            class="border border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700 hover:cursor-pointer rounded-xl flex items-center justify-between p-2 hover:-translate-y-2 transition duration-500 group"
+            title="BootstrapCSS"
+          >
+            <a href="//getbootstrap.com" target="_blank">
+              <img
+                loading="lazy"
+                src="assets/Bootstrap_logo.svg"
+                alt="BootstrapCSS"
+                class="object-contain hover:saturate-200 rounded-md w-14 aspect-square sm:w-20 sm:grayscale group-hover:grayscale-0 transition duration-500"
+              />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -498,6 +687,11 @@
     </main>
 
     <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        document.querySelector("#loader").style.opacity = 0;
+        document.querySelector("#loader").style.zIndex = -1;
+      });
+
       document.addEventListener("alpine:init", () => {
         Alpine.data("blog", () => ({
           posts: [],
@@ -548,62 +742,6 @@
               }
             }
           },
-        }));
-
-        Alpine.data("skills", () => ({
-          skills: [
-            {
-              name: "PHP: Hypertext Preprocessor",
-              logo: "assets/new-php-logo.svg",
-              url: "//php.net",
-            },
-            {
-              name: "Javascript",
-              logo: "assets/js-logo.svg",
-              url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
-            },
-            {
-              name: "Python",
-              logo: "assets/python-logo.svg",
-              url: "//python.org",
-              scale: 1.2,
-            },
-            {
-              name: "Laravel Framework",
-              logo: "assets/laravel-logo.svg",
-              url: "//laravel.com",
-            },
-            {
-              name: "CodeIgniter Framework",
-              logo: "assets/ci-logo.png",
-              url: "//codeigniter.com",
-            },
-            {
-              name: "React Library",
-              logo: "assets/react.svg",
-              url: "//react.dev",
-            },
-            {
-              name: "AlpineJS",
-              logo: "assets/alpinejs-2.svg",
-              url: "//alpinejs.dev",
-            },
-            {
-              name: "Livewire",
-              logo: "assets/livewire-logo.svg",
-              url: "//livewire.laravel.com",
-            },
-            {
-              name: "TailwindCSS",
-              logo: "assets/tailwind-logo.svg",
-              url: "//tailwindcss.com",
-            },
-            {
-              name: "BootstrapCSS",
-              logo: "assets/Bootstrap_logo.svg",
-              url: "//getbootstrap.com",
-            },
-          ],
         }));
       });
     </script>
